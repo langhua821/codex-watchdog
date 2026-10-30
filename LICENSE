@@ -19,10 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-Third-party music notice (separate from the MIT License above):
-Bundled music under assets/sounds is provided by its respective creators under
-CC0 1.0 Universal. The MIT License does not replace the music's CC0 dedication.
-See assets/sounds/LICENSES.md and assets/sounds/SOURCES.md for credits, source
-links, and processing details. CC0 text:
-https://creativecommons.org/publicdomain/zero/1.0/legalcode
