@@ -1,0 +1,128 @@
+[
+  {
+    "id": "piano-mist",
+    "name": "雾晨钢琴 · 20 秒",
+    "file": "piano-mist.wav",
+    "style": "钢琴",
+    "seconds": 20.0
+  },
+  {
+    "id": "piano-night",
+    "name": "夜色钢琴 · 20 秒",
+    "file": "piano-night.wav",
+    "style": "钢琴",
+    "seconds": 20.0
+  },
+  {
+    "id": "guitar-dawn",
+    "name": "晨光吉他 · 20 秒",
+    "file": "guitar-dawn.wav",
+    "style": "吉他",
+    "seconds": 19.99
+  },
+  {
+    "id": "guitar-breeze",
+    "name": "微风吉他 · 13 秒",
+    "file": "guitar-breeze.wav",
+    "style": "吉他",
+    "seconds": 12.8
+  },
+  {
+    "id": "guitar-duet",
+    "name": "双人吉他 · 20 秒",
+    "file": "guitar-duet.wav",
+    "style": "吉他",
+    "seconds": 20.0
+  },
+  {
+    "id": "jazz-wild",
+    "name": "明快爵士 · 20 秒",
+    "file": "jazz-wild.wav",
+    "style": "爵士",
+    "seconds": 20.0
+  },
+  {
+    "id": "jazz-fusion",
+    "name": "融合爵士 · 20 秒",
+    "file": "jazz-fusion.wav",
+    "style": "爵士",
+    "seconds": 20.0
+  },
+  {
+    "id": "jazz-quirky",
+    "name": "俏皮爵士 · 20 秒",
+    "file": "jazz-quirky.wav",
+    "style": "爵士",
+    "seconds": 20.0
+  },
+  {
+    "id": "ambient-sunset",
+    "name": "落日漫步 · 20 秒",
+    "file": "ambient-sunset.wav",
+    "style": "空灵环境",
+    "seconds": 20.0
+  },
+  {
+    "id": "ambient-heaven",
+    "name": "云端回响 · 20 秒",
+    "file": "ambient-heaven.wav",
+    "style": "空灵环境",
+    "seconds": 20.0
+  },
+  {
+    "id": "ambient-utopia",
+    "name": "静谧幻境 · 18 秒",
+    "file": "ambient-utopia.wav",
+    "style": "空灵环境",
+    "seconds": 18.24
+  },
+  {
+    "id": "chip-mushroom",
+    "name": "像素蘑菇 · 20 秒",
+    "file": "chip-mushroom.wav",
+    "style": "复古8-bit",
+    "seconds": 20.0
+  },
+  {
+    "id": "chip-sword",
+    "name": "像素冒险 · 20 秒",
+    "file": "chip-sword.wav",
+    "style": "复古8-bit",
+    "seconds": 20.0
+  },
+  {
+    "id": "chip-town",
+    "name": "像素小镇 · 20 秒",
+    "file": "chip-town.wav",
+    "style": "复古8-bit",
+    "seconds": 20.0
+  },
+  {
+    "id": "synth-pulse",
+    "name": "电子脉冲 · 20 秒",
+    "file": "synth-pulse.wav",
+    "style": "电子合成器",
+    "seconds": 20.0
+  },
+  {
+    "id": "bass-bounce",
+    "name": "俏皮低音 · 20 秒",
+    "file": "bass-bounce.wav",
+    "style": "嘻哈低音",
+    "seconds": 20.0
+  },
+  {
+    "id": "rock-jazz",
+    "name": "摇滚爵士 · 20 秒",
+    "file": "rock-jazz.wav",
+    "style": "摇滚",
+    "seconds": 20.0
+  },
+  {
+    "id": "island-marimba",
+    "name": "海岛木琴 · 20 秒",
+    "file": "island-marimba.wav",
+    "style": "木琴打击乐",
+    "seconds": 20.0
+  }
+]

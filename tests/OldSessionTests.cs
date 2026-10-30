@@ -1,0 +1,9 @@
+using System;
+using System.IO;
+using CodexWatchdog;
+class OldSessionTests {
+ static void Check(bool ok,string reason){if(!ok){Console.WriteLine("FAIL: "+reason);Environment.ExitCode=1;throw new Exception(reason);}}
+ static string Fixture(string root,string date,string id,bool sub){string dir=Path.Combine(root,"sessions",date);Directory.CreateDirectory(dir);string path=Path.Combine(dir,"rollout-"+id+".jsonl");File.WriteAllText(path,"{\"type\":\"session_meta\",\"payload\":{\"id\":\""+id+"\",\"originator\":\"Codex Desktop\",\"source\":"+(sub?"{\"subagent\":{}}":"\"vscode\"")+"}}\n{\"timestamp\":\"2026-10-24T07:22:00Z\",\"type\":\"event_msg\",\"payload\":{\"type\":\"task_started\",\"turn_id\":\"active\"}}\n");return path;}
+ static void Main(string[] args){string root=Path.Combine(Path.GetTempPath(),"watch-old-"+Guid.NewGuid());try{string old=Fixture(root,"2026/09/17","old-active",false);for(int i=18;i<=30;i++)Fixture(root,"2026/09/"+i,"sep-"+i,false);for(int i=1;i<=24;i++)Fixture(root,"2026/10/"+i.ToString("00"),"oct-"+i,false);string sub=Fixture(root,"2026/10/24","sub",true);File.SetLastWriteTimeUtc(old,DateTime.UtcNow.AddMinutes(2));File.SetLastWriteTimeUtc(sub,DateTime.UtcNow.AddMinutes(3));using(var source=new CodexSessionSource(root)){var poll=source.Poll(DateTime.UtcNow);Check(poll.Snapshots.Exists(x=>x.SourceId=="old-active"&&x.IsGenerating),"recently updated old directory discovered");Check(poll.Snapshots.Count==38,"all 38 desktop sources visible below 128 limit");Check(!poll.Snapshots.Exists(x=>x.SourceId=="sub"),"subagent excluded");}File.SetLastWriteTimeUtc(old,new DateTime(2020,1,1));using(var source=new CodexSessionSource(root)){source.SelectedSourceId="old-active";Check(source.Poll(DateTime.UtcNow).Snapshots.Exists(x=>x.SourceId=="old-active"),"selected older file prioritized");}Console.WriteLine("Old session tests passed");}
+ finally{if(Directory.Exists(root))Directory.Delete(root,true);}}
+}

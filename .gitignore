@@ -1,0 +1,10 @@
+dist/
+build/
+*.user
+*.log
+*.wav
+!assets/sounds/*.wav
+evidence/
+settings.json
+monitor-events*.jsonl
+*.previous.exe
