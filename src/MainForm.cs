@@ -19,6 +19,7 @@ namespace CodexWatchdog
         private readonly AlarmSound alarm = new AlarmSound();
         private readonly System.Windows.Forms.Timer displayTimer = new System.Windows.Forms.Timer();
         private readonly StatusOrb orb = new StatusOrb();
+        private readonly AlertSourcePopup sourcePopup = new AlertSourcePopup();
         private readonly ToolTip tip = new ToolTip();
         private readonly NotifyIcon tray;
         private readonly ToolStripMenuItem pauseItem, stopItem, snoozeItem;
@@ -258,12 +259,18 @@ namespace CodexWatchdog
             if (startupFailure.Length > 0) summary += "；" + startupFailure;
             orb.StatusText = shortStatus; orb.StateKind = stateKind; orb.Alerting = ringing; orb.AnimationFrame = ++frame;
             tip.SetToolTip(orb, Short(summary + "\n" + detail, 220) + (ringing ? "\n单击停止铃声；拖动移动" : "\n单击暂停 / 继续；右键打开设置；拖动移动"));
-            tray.Text = Short("Codex 守望铃 · " + shortStatus, 60);
+            tray.Text = Short("Codex 守望铃 · " + shortStatus + (activeAlert == null || testing ? "" : " · " + activeAlert.Title), 60);
             pauseItem.Text = engine.Paused ? "继续监控" : "暂停监控"; stopItem.Enabled = ringing; snoozeItem.Enabled = alerts.Count > 0;
             bool showOrb = (!settings.ShowOnlyWithDesktopApp || appRunning) && (ringing || !manuallyHidden);
             if (showOrb) { if (Opacity != 1) Opacity = 1; if (!Visible) Show(); if (!TopMost) TopMost = true; } else if (Visible) Hide();
+            if (showOrb && !testing && alerts.Count > 0)
+            {
+                sourcePopup.RefreshAlerts(alerts.OrderBy(a => a.Id == activeAlert.Id ? 0 : 1).ToList(), Bounds);
+                if (!sourcePopup.Visible) sourcePopup.Show(this);
+            }
+            else sourcePopup.Hide();
             if (settingsForm != null && !settingsForm.IsDisposed) settingsForm.RefreshStatus(latest, summary, detail, engine.Paused, ringing, startupFailure.Length > 0 ? "启动设置异常：" + startupFailure : health);
-            AccessibleDescription = "置顶=" + TopMost + ";响铃=" + alarm.IsPlaying + ";状态=" + shortStatus;
+            AccessibleDescription = "置顶=" + TopMost + ";响铃=" + alarm.IsPlaying + ";状态=" + shortStatus + (activeAlert == null || testing ? "" : ";来源=" + activeAlert.Title);
         }
 
         private static string ShortAlert(AlertKind kind)
@@ -293,6 +300,7 @@ namespace CodexWatchdog
         {
             closing = true; displayTimer.Stop(); if (pollTimer != null) pollTimer.Dispose();
             recordEvent("exited", null);
+            sourcePopup.Dispose();
             alarm.Dispose(); if (settingsForm != null) settingsForm.Close();
             tray.Visible = false; tray.Dispose(); tip.Dispose(); SavePosition();
             base.OnFormClosing(e);

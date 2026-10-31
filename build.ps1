@@ -104,5 +104,9 @@ if ($Test) {
     if ($LASTEXITCODE -ne 0) { throw '分类真实播放测试编译失败。' }
     & "$taskUiTest\per-type-playback-tests.exe"
     if ($LASTEXITCODE -ne 0) { throw '分类真实播放测试失败。' }
+    & $taskCompiler /nologo /target:exe /utf8output /main:AlertSourcePopupTests "/win32manifest:$taskRoot\app.manifest" /out:"$taskUiTest\alert-source-popup-tests.exe" /r:System.dll /r:System.Core.dll /r:System.Drawing.dll /r:System.Windows.Forms.dll /r:System.Web.Extensions.dll "/r:$taskWpf\PresentationCore.dll" "/r:$taskWpf\WindowsBase.dll" $taskSources "$taskRoot\tests\AlertSourcePopupTests.cs"
+    if ($LASTEXITCODE -ne 0) { throw '提醒来源卡测试编译失败。' }
+    & "$taskUiTest\alert-source-popup-tests.exe"
+    if ($LASTEXITCODE -ne 0) { throw '提醒来源卡测试失败。' }
 }
 Get-Item -LiteralPath "$taskDist\CodexWatchdog.exe" | Select-Object FullName,Length,LastWriteTime

@@ -31,7 +31,7 @@ namespace CodexWatchdog
             AutoScaleDimensions = new SizeF(96F, 96F); AutoScaleMode = AutoScaleMode.Dpi;
             this.settings = settings; this.apply = apply;
             AlertSoundRouting.EnsureProfiles(settings);
-            Text = "守望铃 1.4.1 · 设置与状态"; Name = "WatchdogSettings"; AccessibleName = Text;
+            Text = "守望铃 1.4.2 · 设置与状态"; Name = "WatchdogSettings"; AccessibleName = Text;
             Font = new Font("Microsoft YaHei UI", 9F); ForeColor = ink; BackColor = Color.FromArgb(246, 248, 252);
             ClientSize = new Size(428, 714); FormBorderStyle = FormBorderStyle.FixedDialog; MaximizeBox = false; MinimizeBox = true;
             StartPosition = FormStartPosition.CenterScreen; Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
